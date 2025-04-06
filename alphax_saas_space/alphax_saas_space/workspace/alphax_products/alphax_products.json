@@ -1,0 +1,38 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"vFmgwD6C9A\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">AlphaX Saas Products</span>\",\"col\":12}},{\"id\":\"gNXWYfez16\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product Bundle\",\"col\":3}}]",
+ "creation": "2025-04-07 01:14:53.377973",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "setting-gear",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "AlphaX Products",
+ "links": [],
+ "modified": "2025-04-07 01:47:06.760013",
+ "modified_by": "Administrator",
+ "module": "Alphax Saas Space",
+ "name": "AlphaX Products",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "AlphaX Saas",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 28.8,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Product Bundle",
+   "link_to": "Product Bundle",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "AlphaX Products"
+}

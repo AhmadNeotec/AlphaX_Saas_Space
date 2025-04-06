@@ -1,0 +1,79 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"vFmgwD6C9A\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">AlphaX Saas</span>\",\"col\":12}},{\"id\":\"AeWLfcMmR2\",\"type\":\"card\",\"data\":{\"card_name\":\"AlphaX Accounts\",\"col\":4}}]",
+ "creation": "2025-04-06 23:53:42.686216",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "add-round",
+ "idx": 0,
+ "indicator_color": "purple",
+ "is_hidden": 0,
+ "label": "AlphaX Saas",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "AlphaX Accounts",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Account",
+   "link_count": 0,
+   "link_to": "Account",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Accounting Dimension",
+   "link_count": 0,
+   "link_to": "Accounting Dimension",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Accounts Settings",
+   "link_count": 0,
+   "link_to": "Accounts Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Accounting Period",
+   "link_count": 0,
+   "link_to": "Accounting Period",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2025-04-07 01:06:50.052932",
+ "modified_by": "Administrator",
+ "module": "Alphax Saas Space",
+ "name": "AlphaX Saas",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 28.0,
+ "shortcuts": [],
+ "title": "AlphaX Saas"
+}

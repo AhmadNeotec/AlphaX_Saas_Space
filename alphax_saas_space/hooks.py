@@ -20,9 +20,19 @@ app_license = "mit"
 # 		"has_permission": "alphax_saas_space.api.permission.has_app_permission"
 # 	}
 # ]
+# my_custom_app/hooks.py
+# my_custom_app/hooks.py
+# # alphax_saas_space/hooks.py
+# default_home_page = "my-custom-workspace"
 
-# Includes in <head>
-# ------------------
+# fixtures = ["Workspace", "Custom Field", "Server Script"]
+
+# website_route_rules = [
+#     {"from_route": "/toggle_modules", "to_route": "toggle_modules"}
+# ]
+
+# app_patches = ["alphax_saas_space.patches"]
+# # ------------------
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/alphax_saas_space/css/alphax_saas_space.css"

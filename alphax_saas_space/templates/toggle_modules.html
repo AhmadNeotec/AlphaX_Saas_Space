@@ -1,0 +1,38 @@
+<!-- my_custom_app/templates/toggle_modules.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toggle Modules</title>
+    <script src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+    <script src="/assets/frappe/js/frappe-web.min.js"></script>
+</head>
+<body>
+    <h1>Toggle Modules</h1>
+    <form id="toggle-form">
+        <label><input type="checkbox" name="hide_default" {% if hide_default %}checked{% endif %}> Hide Default Modules</label>
+        <button type="submit">Save</button>
+    </form>
+    <script>
+        $(document).ready(function() {
+            $("#toggle-form").on("submit", function(e) {
+                e.preventDefault();
+                let hide_default = this.hide_default.checked ? 1 : 0;
+                frappe.call({
+                    method: "frappe.client.set_value",
+                    args: {
+                        doctype: "User",
+                        name: "{{ user }}",
+                        fieldname: "hide_default_modules",
+                        value: hide_default
+                    },
+                    callback: function(r) {
+                        if (!r.exc) {
+                            frappe.msgprint("Settings saved. Please log out and log in to apply changes.");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
