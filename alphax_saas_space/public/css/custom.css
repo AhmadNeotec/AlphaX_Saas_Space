@@ -1,0 +1,19 @@
+/* custom.css */
+/* Hide sidebar on non-doctype pages */
+body[data-page-route^="home"] .layout-side-section,
+body[data-page-route^="dashboard"] .layout-side-section,
+body:not([data-page-route^="doctype"]):not([data-page-route^="List"]) .layout-side-section {
+    display: none !important;
+}
+
+/* Hide toggle button on non-doctype pages */
+body:not([data-page-route^="doctype"]):not([data-page-route^="List"]) .sidebar-toggle {
+    display: none !important;
+}
+
+/* Expand content area on non-doctype pages */
+body:not([data-page-route^="doctype"]):not([data-page-route^="List"]) .layout-main-section {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}

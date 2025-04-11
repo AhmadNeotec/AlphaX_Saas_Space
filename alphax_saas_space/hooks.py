@@ -36,8 +36,13 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/alphax_saas_space/css/alphax_saas_space.css"
-# app_include_js = "/assets/alphax_saas_space/js/alphax_saas_space.js"
+app_include_js = "/assets/alphax_saas_space/js/dashboard.js"
+app_include_css = "/assets/alphax_saas_space/css/custom.css"
+# app_include_js = "/assets/alphax_saas_space/js/custom.js"
 
+desk_include_js = [
+    "public/js/custom.js"
+]
 # include js, css files in header of web template
 # web_include_css = "/assets/alphax_saas_space/css/alphax_saas_space.css"
 # web_include_js = "/assets/alphax_saas_space/js/alphax_saas_space.js"
@@ -154,7 +159,16 @@ app_license = "mit"
 # 		"on_trash": "method"
 # 	}
 # }
-
+# website_route_rules = [
+#     {"from_route": "/dashboard", "to_route": "alphax_saas_space.dashboard"},
+#     # {"from_route": "/dashboard/", "to_route": "alphax_saas_space.dashboard"}
+# ]
+# website_route_rules = [
+#     {"from_route": "/", "to_route": "/dashboard"},  # Map root URL to dashboard
+#     {"from_route": "/dashboard", "to_route": "alphax_saas_space.www.dashboard.get_context"},  # Existing dashboard route
+#     # {"from_route": "/dashboard/<path>", "to_route": "alphax_saas_space.www.dashboard.get_context"}  # Dynamic sub-routes
+# ]
+# home_page = "dashboard"
 # Scheduled Tasks
 # ---------------
 
@@ -251,4 +265,3 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-

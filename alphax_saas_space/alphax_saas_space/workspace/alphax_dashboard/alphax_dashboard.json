@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"vFmgwD6C9A\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">AlphaX Saas Dashboard</span>\",\"col\":12}},{\"id\":\"j2n-8AeMPU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"AlphaX Accounts\",\"col\":3}}]",
+ "content": "[{\"id\":\"vFmgwD6C9A\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">AlphaX Saas Dashboard</span>\",\"col\":12}},{\"id\":\"j2n-8AeMPU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"AlphaX Accounts\",\"col\":3}},{\"id\":\"407PhwmE2F\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance Dashboard\",\"col\":3}},{\"id\":\"Sx8mrMaKk0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Human Resource\",\"col\":3}}]",
  "creation": "2025-04-07 01:04:58.113410",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "AlphaX Dashboard",
  "links": [],
- "modified": "2025-04-07 01:45:37.571546",
+ "modified": "2025-04-10 13:16:18.350225",
  "modified_by": "Administrator",
  "module": "Alphax Saas Space",
  "name": "AlphaX Dashboard",
@@ -28,8 +28,22 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "Attendance Dashboard",
+   "link_to": "Attendance",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "AlphaX Accounts",
    "link_to": "Accounts",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Human Resource",
+   "link_to": "Human Resource",
    "type": "Dashboard"
   }
  ],

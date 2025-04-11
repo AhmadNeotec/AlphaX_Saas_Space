@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AlphaX Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/assets/alphax_saas_space/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js" defer></script>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo-details brand-logo">
+            <img src="/assets/alphax_saas_space/images/AlphaX.png" alt="AlphaX Logo">
+        </div>
+        <ul class="menu">
+            <li class="menu-item">
+                <span>
+                    <span><i class="fas fa-tachometer-alt"></i> Dashboard </span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </span>
+                <ul class="sub-menu">
+                    <li data-route="/dashboard-view/Accounts">Accounting Dashboard</li>
+                    <li data-route="/dashboard-view/Asset">Asset Dashboard</li>
+                    <li data-route="/dashboard-view/Stock">Stock Dashboard</li>
+                    <li data-route="/dashboard-view/Buying">Buying Dashboard</li>
+                    <li data-route="/dashboard-view/Selling">Selling Dashboard</li>
+                    <li data-route="/hr-dashboard">Hr Dashboard</li>
+
+                </ul>
+            </li>
+            <li class="menu-item">
+                <span data-route="/accounting">
+                    <span><i class="fas fa-calculator"></i> Accounting</span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </span>
+                <ul class="sub-menu">
+                    <li data-route="/payables">Payables</li>
+                    <li data-route="/receivables">Receivables</li>
+                    <li data-route="/financial-reports">Fianancial Report</li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <span data-route="/banking">
+                    <span><i class="fas fa-university"></i> Banking</span>
+                </span>
+            </li>
+            <li class="menu-item">
+                <span>
+                    <span><i class="fas fa-credit-card"></i> Payments</span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </span>
+                <ul class="sub-menu">
+                    <li data-route="/payment-term">Payment Term List</li>
+                    <li data-route="/payment-term/view/report">Payment Term Report</li>
+                    <li data-route="/payment-term/new-payment-term">New Payment Term</li>
+                    <li data-route="/payment-entry/new-payment-entry">New Payment Entry</li>
+                    <li data-route="/payment-entry">Payment Entry List</li>
+                    <li data-route="/payment-entry/view/report">Payment Entry Report</li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <span data-route="/assets">
+                    <span><i class="fas fa-vault"></i> Assets</span>
+                </span>
+            </li>
+            <li class="menu-item">
+                <span>
+                    <span><i class="fas fa-box-open"></i> Products</span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </span>
+                <ul class="sub-menu">
+                    <li data-route="/item">Items</li>
+                    <li data-route="/item/new-item">Add Item</li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <span>
+                    <span><i class="fas fa-boxes"></i> Suppliers</span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </span>
+                <ul class="sub-menu">
+                    <li data-route="/suppliers">View Suppliers</li>
+                    <li data-route="/supplier/new">Add Supplier</li>
+                    <li data-route="/email-templates">View Email Templates</li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <span>
+                    <span><i class="fas fa-shopping-cart"></i> Purchase</span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </span>
+                <ul class="sub-menu">
+                    <li data-route="/purchase-invoice/new">Create Purchase Invoice</li>
+                    <li data-route="/purchase-invoices">View Invoices</li>
+                    <!-- <li data-route="/recurring-purchase-invoices">View Recurring Invoice</li> -->
+                </ul>
+            </li>
+            <li class="menu-item">
+                <span>
+                    <span><i class="fas fa-users"></i> Customers</span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </span>
+                <ul class="sub-menu">
+                    <li data-route="/customer/new">Add Customer</li>
+                    <li data-route="/customers">View Customers</li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <span>
+                    <span><i class="fas fa-file-invoice-dollar"></i> Sales</span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </span>
+                <ul class="sub-menu">
+                    <li data-route="/sales-invoice/new">Create Sales Invoice</li>
+                    <li data-route="/sales-invoices">View Invoices</li>
+                    <!-- <li data-route="/recurring-sales-invoices">Recurring Invoice</li> -->
+                </ul>
+            </li>
+            <li class="menu-item">
+                <span>
+                    <span><i class="fas fa-cash-register"></i> Point Of Sale</span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </span>
+                <ul class="sub-menu">
+                    <li data-route="/pos-profile/new-pos-profile">New POS</li>
+                    <li data-route="/point-of-sale">POS</li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <span data-route="/stock">
+                    <span><i class="fas fa-warehouse"></i> Stock</span>
+                </span>
+            </li>
+            <li class="menu-item">
+                <span data-route="/hr">
+                    <span><i class="fas fa-user-cog"></i> HR</span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </span>
+                <ul class="sub-menu">
+                    <li data-route="/recruitment">Recruitment</li>
+                    <li data-route="/employee-lifecycle">Employee Life Cycle</li>
+                    <li data-route="/performance">Performance</li>
+                    <li data-route="/shift-%26-attendance">Shift & Attendance</li>
+                    <li data-route="/expense-claims">Expense Claim</li>
+                    <li data-route="/leaves">Leaves</li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <span data-route="/payroll">
+                    <span><i class="fas fa-file-invoice-dollar"></i> Payroll</span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </span>
+                <ul class="sub-menu">
+                    <li data-route="/salary-payout">Salary Payout</li>
+                    <li data-route="/tax-%26-benefits">Tax & Benefits</li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <span data-route="/reports">
+                    <span><i class="fas fa-chart-line"></i> Reports</span>
+                </span>
+            </li>
+            <li class="menu-item">
+                <span data-route="/settings">
+                    <span><i class="fas fa-cog"></i> Settings</span>
+                </span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Section -->
+    <section class="home-section">
+        <div class="home-content" id="content-area">
+            <!-- Dynamic content loaded here -->
+        </div>
+    </section>
+</body>
+<script>
+    console.log("🚨 Inline test script ran!");
+</script>
+<script src="/assets/alphax_saas_space/js/dashboard.js"></script>
+<script src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+
+</html>
