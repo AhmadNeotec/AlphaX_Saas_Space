@@ -88,7 +88,25 @@ desk_include_js = [
 
 # automatically create page for each record of this doctype
 # website_generators = ["Web Page"]
+# hooks.py
+def redirect_after_login(context):
+    return "/dashboard"
 
+app_include_js = [
+    "/assets/js/dashboard.min.js"  # If you have any JS for dashboard
+]
+
+bootinfo = {
+    "redirect_after_login": redirect_after_login
+}
+
+
+# hooks.py
+import frappe
+
+from alphax_saas_space.utils.login import CustomLoginManager
+
+frappe.auth.LoginManager = CustomLoginManager
 # Jinja
 # ----------
 
