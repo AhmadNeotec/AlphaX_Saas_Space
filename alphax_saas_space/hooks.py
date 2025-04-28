@@ -38,6 +38,10 @@ app_license = "mit"
 # app_include_css = "/assets/alphax_saas_space/css/alphax_saas_space.css"
 app_include_js = "/assets/alphax_saas_space/js/dashboard.js"
 app_include_css = "/assets/alphax_saas_space/css/custom.css"
+
+client_script = [
+    "/assets/alphax_saas_space/js/custom_currency.js"
+]
 # app_include_js = "/assets/alphax_saas_space/js/custom.js"
 
 desk_include_js = [
@@ -159,6 +163,11 @@ desk_include_js = [
 # 		"on_trash": "method"
 # 	}
 # }
+doc_events = {
+    "Currency": {
+        "validate": "alphax_saas_space.alphax_saas_space.ustom_currency.update_currency_symbol"
+    }
+}
 # website_route_rules = [
 #     {"from_route": "/dashboard", "to_route": "alphax_saas_space.dashboard"},
 #     # {"from_route": "/dashboard/", "to_route": "alphax_saas_space.dashboard"}

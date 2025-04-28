@@ -31,19 +31,7 @@ document.getElementById('sidebar-toggle').addEventListener('click', () => {
 function setupEventListeners() {
     console.log('Setting up event listeners');
 
-    // Add click event for logo to load /dashboard
-    // const logoImage = document.querySelector('.brand-logo img');
-    // if (logoImage) {
-    //     logoImage.addEventListener('click', function (e) {
-    //         e.preventDefault();
-    //         console.log('Logo clicked, loading /dashboard');
-    //         loadContent('/dashboard');
-    //     });
-    // } else {
-    //     console.warn('Logo image not found in .brand-logo');
-    // }
-
-    // Bind menu item clicks
+    // Bind menu item clicks (for loading routes)
     document.querySelectorAll('.menu-item > span').forEach(span => {
         span.addEventListener('click', function (e) {
             e.preventDefault();
@@ -54,42 +42,21 @@ function setupEventListeners() {
                 console.log('Loading route from menu:', route);
                 loadContent(route);
             }
+        });
+    });
 
-            const parentLi = this.parentElement;
+    // Bind arrow clicks (for toggling submenu)
+    document.querySelectorAll('.menu-item .arrow').forEach(arrow => {
+        arrow.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation(); // Prevent triggering the parent span's route loading
+            console.log('Arrow clicked for submenu toggle');
+            const parentLi = this.closest('.menu-item');
             const subMenu = parentLi.querySelector('.sub-menu');
-            const arrow = this.querySelector('.arrow');
-
             if (subMenu) {
-                const isDisplayed = subMenu.style.display === 'block';
-
-                // Close all other submenus
-                document.querySelectorAll('.sub-menu').forEach(menu => {
-                    if (menu !== subMenu) {
-                        menu.style.display = 'none';
-                        menu.parentElement.classList.remove('active');
-
-                        const otherArrow = menu.parentElement.querySelector('.arrow');
-                        if (otherArrow) {
-                            otherArrow.classList.remove('active');
-                        }
-                    }
-                });
-
-                // Toggle current submenu
-                subMenu.style.display = isDisplayed ? 'none' : 'block';
-                parentLi.classList.toggle('active', !isDisplayed);
-
-                // Rotate arrow
-                if (arrow) {
-                    arrow.classList.toggle('active', !isDisplayed);
-                }
-            } else {
-                // If it has a route but no submenu, you can load content here
-                const route = this.getAttribute('data-route');
-                if (route) {
-                    console.log('Loading route:', route);
-                    loadContent(route);
-                }
+                const isOpen = subMenu.classList.contains('open');
+                subMenu.classList.toggle('open');
+                parentLi.classList.toggle('active', !isOpen);
             }
         });
     });
@@ -207,7 +174,10 @@ function loadContent(url) {
         '/dashboard-view/Accounts': '/app/dashboard-view/Accounts',
         '/item': '/app/item',
         '/item/new-item': '/app/item/new-item',
-        '/dashboard': '/app/dashboard-view/Accounts'
+        '/dashboard': '/app/dashboard-view/Accounts',
+        '/quotation': 'app/quotation',
+        '/supplier-quotation': 'app/supplier-quotation'
+
     };
 
     // Load appropriate iframe content

@@ -17,3 +17,87 @@ body:not([data-page-route^="doctype"]):not([data-page-route^="List"]) .layout-ma
     width: 100% !important;
     max-width: 100% !important;
 }
+
+/* h3.title-text[title="Stock"] {
+    display: none !important;
+} */
+
+h3.title-text[title="Stock"] {
+    visibility: hidden;
+    position: relative;
+    width: auto !important;
+    overflow: visible !important;
+}
+
+h3.title-text[title="Stock"]::after {
+    content: "Inventory";
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    width: auto;
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+}
+
+h3.title-text[title="Buying Dashboard"] {
+    visibility: hidden;
+    position: relative;
+    width: auto !important;
+    overflow: visible !important;
+}
+
+h3.title-text[title="Buying Dashboard"]::after {
+    content: "Purchasing Dashboard";
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    width: auto;
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+}
+
+h3.title-text[title="Selling Dashboard"] {
+    visibility: hidden;
+    position: relative;
+    width: auto !important;
+    overflow: visible !important;
+}
+
+h3.title-text[title="Selling Dashboard"]::after {
+    content: "Revenue Dashboard";
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    width: auto;
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+}
+
+h3.title-text[title="Stock Dashboard"] {
+    visibility: hidden;
+    position: relative;
+    width: auto !important;
+    overflow: visible !important;
+}
+
+h3.title-text[title="Stock Dashboard"]::after {
+    content: "Inventory Dashboard";
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    width: auto;
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+}

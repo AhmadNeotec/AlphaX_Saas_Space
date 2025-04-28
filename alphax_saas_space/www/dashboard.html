@@ -21,39 +21,50 @@
         <ul class="menu">
             <li class="menu-item">
                 <span>
-                    <span><i class="fas fa-tachometer-alt"></i> Dashboard </span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    <span class="title-container">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </span>
+                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </span>
                 <ul class="sub-menu">
-                    <li data-route="/dashboard-view/Accounts">Accounting Dashboard</li>
-                    <li data-route="/dashboard-view/Asset">Asset Dashboard</li>
-                    <li data-route="/dashboard-view/Stock">Stock Dashboard</li>
-                    <li data-route="/dashboard-view/Buying">Buying Dashboard</li>
-                    <li data-route="/dashboard-view/Selling">Selling Dashboard</li>
-                    <li data-route="/hr-dashboard">Hr Dashboard</li>
-
+                    <li data-route="/dashboard-view/Accounts">Accounting</li>
+                    <li data-route="/dashboard-view/Asset">Asset</li>
+                    <li data-route="/dashboard-view/Stock">Inventory</li>
+                    <li data-route="/dashboard-view/Buying">Purchasing</li>
+                    <li data-route="/dashboard-view/Selling">Revenue</li>
+                    <li data-route="/hr-dashboard">HRM</li>
                 </ul>
             </li>
             <li class="menu-item">
                 <span data-route="/accounting">
-                    <span><i class="fas fa-calculator"></i> Accounting</span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    <span class="title-container">
+                        <i class="fas fa-calculator"></i>
+                        <span>Accounting</span>
+                    </span>
+                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </span>
                 <ul class="sub-menu">
                     <li data-route="/payables">Payables</li>
                     <li data-route="/receivables">Receivables</li>
-                    <li data-route="/financial-reports">Fianancial Report</li>
+                    <li data-route="/financial-reports">Financial Report</li>
                 </ul>
             </li>
             <li class="menu-item">
                 <span data-route="/banking">
-                    <span><i class="fas fa-university"></i> Banking</span>
+                    <span class="title-container">
+                        <i class="fas fa-university"></i>
+                        <span>Banking</span>
+                    </span>
                 </span>
             </li>
             <li class="menu-item">
                 <span>
-                    <span><i class="fas fa-credit-card"></i> Payments</span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    <span class="title-container">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Payments</span>
+                    </span>
+                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </span>
                 <ul class="sub-menu">
                     <li data-route="/payment-term">Payment Term List</li>
@@ -66,13 +77,19 @@
             </li>
             <li class="menu-item">
                 <span data-route="/assets">
-                    <span><i class="fas fa-vault"></i> Assets</span>
+                    <span class="title-container">
+                        <i class="fas fa-vault"></i>
+                        <span>Assets</span>
+                    </span>
                 </span>
             </li>
             <li class="menu-item">
                 <span>
-                    <span><i class="fas fa-box-open"></i> Products</span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    <span class="title-container">
+                        <i class="fas fa-box-open"></i>
+                        <span>Products</span>
+                    </span>
+                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </span>
                 <ul class="sub-menu">
                     <li data-route="/item">Items</li>
@@ -81,8 +98,11 @@
             </li>
             <li class="menu-item">
                 <span>
-                    <span><i class="fas fa-boxes"></i> Suppliers</span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    <span class="title-container">
+                        <i class="fas fa-boxes"></i>
+                        <span>Suppliers</span>
+                    </span>
+                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </span>
                 <ul class="sub-menu">
                     <li data-route="/suppliers">View Suppliers</li>
@@ -92,19 +112,25 @@
             </li>
             <li class="menu-item">
                 <span>
-                    <span><i class="fas fa-shopping-cart"></i> Purchase</span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    <span class="title-container">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Purchase</span>
+                    </span>
+                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </span>
                 <ul class="sub-menu">
+                    <li data-route="/supplier-quotation">Supplier Qoutation</li>
                     <li data-route="/purchase-invoice/new">Create Purchase Invoice</li>
                     <li data-route="/purchase-invoices">View Invoices</li>
-                    <!-- <li data-route="/recurring-purchase-invoices">View Recurring Invoice</li> -->
                 </ul>
             </li>
             <li class="menu-item">
                 <span>
-                    <span><i class="fas fa-users"></i> Customers</span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    <span class="title-container">
+                        <i class="fas fa-users"></i>
+                        <span>Customers</span>
+                    </span>
+                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </span>
                 <ul class="sub-menu">
                     <li data-route="/customer/new">Add Customer</li>
@@ -113,19 +139,25 @@
             </li>
             <li class="menu-item">
                 <span>
-                    <span><i class="fas fa-file-invoice-dollar"></i> Sales</span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    <span class="title-container">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Revenue</span>
+                    </span>
+                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </span>
                 <ul class="sub-menu">
+                    <li data-route="/quotation">Quotation</li>
                     <li data-route="/sales-invoice/new">Create Sales Invoice</li>
                     <li data-route="/sales-invoices">View Invoices</li>
-                    <!-- <li data-route="/recurring-sales-invoices">Recurring Invoice</li> -->
                 </ul>
             </li>
             <li class="menu-item">
                 <span>
-                    <span><i class="fas fa-cash-register"></i> Point Of Sale</span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    <span class="title-container">
+                        <i class="fas fa-cash-register"></i>
+                        <span>Point Of Sale</span>
+                    </span>
+                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </span>
                 <ul class="sub-menu">
                     <li data-route="/pos-profile/new-pos-profile">New POS</li>
@@ -134,13 +166,19 @@
             </li>
             <li class="menu-item">
                 <span data-route="/stock">
-                    <span><i class="fas fa-warehouse"></i> Stock</span>
+                    <span class="title-container">
+                        <i class="fas fa-warehouse"></i>
+                        <span>Inventory</span>
+                    </span>
                 </span>
             </li>
             <li class="menu-item">
                 <span data-route="/hr">
-                    <span><i class="fas fa-user-cog"></i> HR</span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    <span class="title-container">
+                        <i class="fas fa-user-cog"></i>
+                        <span>HRM</span>
+                    </span>
+                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </span>
                 <ul class="sub-menu">
                     <li data-route="/recruitment">Recruitment</li>
@@ -153,8 +191,11 @@
             </li>
             <li class="menu-item">
                 <span data-route="/payroll">
-                    <span><i class="fas fa-file-invoice-dollar"></i> Payroll</span>
-                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    <span class="title-container">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Payroll</span>
+                    </span>
+                    <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </span>
                 <ul class="sub-menu">
                     <li data-route="/salary-payout">Salary Payout</li>
@@ -163,12 +204,18 @@
             </li>
             <li class="menu-item">
                 <span data-route="/reports">
-                    <span><i class="fas fa-chart-line"></i> Reports</span>
+                    <span class="title-container">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reports</span>
+                    </span>
                 </span>
             </li>
             <li class="menu-item">
                 <span data-route="/settings">
-                    <span><i class="fas fa-cog"></i> Settings</span>
+                    <span class="title-container">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </span>
                 </span>
             </li>
         </ul>
