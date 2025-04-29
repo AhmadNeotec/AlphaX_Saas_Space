@@ -142,7 +142,7 @@ function loadContent(url) {
         '/product-bundle/new-product-bundle': '/app/product-bundle/new-product-bundle',
         '/expense-claim': '/app/expense-claim',
         '/expense-claim/new-expense-claim': '/app/expense-claim/new-expense-claim',
-        '/pos-profile/new-pos-profile': '/app/pos-profile/new-pos-profile',
+        '/pos-profile': '/app/pos-profile',
         '/point-of-sale': '/app/point-of-sale',
         '/journal-entry': '/app/journal-entry',
         '/journal-entry/new-journal-entry': '/app/journal-entry/new-journal-entry',
