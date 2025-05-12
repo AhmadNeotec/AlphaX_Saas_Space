@@ -142,9 +142,9 @@ iframe {
 .footer{
     text-align: center;
     padding: 10px 0;
-    color: #fff; /* Adjust text color to match the sidebar's theme */
+    color: #fff; 
     font-size: 0.9em;
-    margin-top: auto; /* Push the footer to the bottom of the sidebar */
+    margin-top: auto;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 /* Scrollbar Styling */

@@ -37,6 +37,10 @@ app_license = "mit"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/alphax_saas_space/css/alphax_saas_space.css"
 app_include_js = "/assets/alphax_saas_space/js/dashboard.js"
+app_include_js = "/assets/alphax_saas_space/js/theme.js"
+
+
+app_include_css = "/assets/alphax_saas_space/css/theme.css"
 app_include_css = "/assets/alphax_saas_space/css/custom.css"
 
 client_script = [
@@ -47,6 +51,9 @@ client_script = [
 desk_include_js = [
     "public/js/custom.js"
 ]
+
+website_css = "css/theme.css"  # If you have custom CSS
+website_js = "js/theme.js"
 # include js, css files in header of web template
 # web_include_css = "/assets/alphax_saas_space/css/alphax_saas_space.css"
 # web_include_js = "/assets/alphax_saas_space/js/alphax_saas_space.js"
@@ -186,6 +193,8 @@ doc_events = {
         "validate": "alphax_saas_space.alphax_saas_space.ustom_currency.update_currency_symbol"
     }
 }
+
+
 # website_route_rules = [
 #     {"from_route": "/dashboard", "to_route": "alphax_saas_space.dashboard"},
 #     # {"from_route": "/dashboard/", "to_route": "alphax_saas_space.dashboard"}
@@ -225,6 +234,17 @@ doc_events = {
 # Overriding Methods
 # ------------------------------
 #
+on_login = [
+    "alphax_saas_space.overrides.switch_theme.set_default_theme_on_login"
+]
+
+override_whitelisted_methods = {
+    "frappe.core.doctype.user.user.switch_theme": "alphax_saas_space.overrides.switch_theme.switch_theme"
+}
+
+after_install = [
+    "alphax_saas_space.install.set_default_theme"
+]
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "alphax_saas_space.event.get_events"
 # }
