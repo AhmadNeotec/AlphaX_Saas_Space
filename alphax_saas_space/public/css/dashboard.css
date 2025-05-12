@@ -1,3 +1,14 @@
+/* Reset Default Browser Styles */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Ensure Global Box Sizing */
 * {
     margin: 0;
     padding: 0;
@@ -7,23 +18,159 @@
 
 body {
     background-color: #D8CAD6;
-    display: flex;
-    height: auto;
+    height: 100vh;
     overflow-y: auto;
     font-weight: 500;
 }
 
+/* Hamburger Menu Container */
+body>div:first-child {
+    position: fixed;
+    top: 10px;
+    /* Reduced from 20px to minimize space */
+    left: 10px;
+    width: 40px;
+    /* Reduced to match clickable area */
+    height: 40px;
+    z-index: 1001;
+}
+
+/* Hamburger Menu Styling */
+.menu-button-container {
+    display: block;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1002;
+    bottom: 5px;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.menu-button,
+.menu-button::before,
+.menu-button::after {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 2px;
+    background-color: #000000;
+}
+
+.menu-button {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-button::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+}
+
+.menu-button::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+}
+
+#menu-toggle:checked+.menu-button-container .menu-button::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+#menu-toggle:checked+.menu-button-container .menu-button {
+    background: transparent;
+}
+
+#menu-toggle:checked+.menu-button-container .menu-button::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+/* Sidebar Styling */
 .sidebar {
-    width: 220px;
-    background-color: #774A67;
-    color: #ffffff;
-    padding: 15px;
-    height: 100vh;
-    overflow-y: auto;
     position: fixed;
     top: 0;
     left: 0;
+    width: 220px;
+    height: 100%;
+    background-color: #774A67;
+    color: #ffffff;
+    padding: 15px;
+    overflow-y: auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+    z-index: 1000;
+}
+
+.sidebar.visible {
+    transform: translateX(0);
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+/* Logo Styling */
+.brand-logo {
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 25px;
+}
+
+/* Main Content Styling */
+.home-section {
+    margin-left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    position: relative;
+}
+
+.home-section.full-width {
+    margin-left: 0;
+    width: 100%;
+}
+
+.home-section:not(.full-width) {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+        transform: translateX(-100%);
+    }
+
+    .sidebar.visible {
+        transform: translateX(0);
+    }
+
+    .home-section {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .burger-menu {
+        display: block;
+    }
 }
 
 .brand-logo {
@@ -57,7 +204,7 @@ body {
     margin-bottom: 5px;
 }
 
-.menu-item > span {
+.menu-item>span {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -73,26 +220,26 @@ body {
 .menu-item .title-container {
     display: flex;
     align-items: center;
-    flex: 1; /* Take up available space */
+    flex: 1;
 }
 
 .menu-item .title-container i {
-    margin-right: 12px; /* Consistent spacing between icon and text */
-    font-size: 16px; /* Ensure icons are uniform */
-    width: 20px; /* Fixed width for icons to align consistently */
-    text-align: center; /* Center icon within its space */
+    margin-right: 12px;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
 }
 
 .menu-item .title-container span {
-    font-size: 14px; /* Consistent text size */
+    font-size: 14px;
 }
 
-.menu-item:hover > span {
+.menu-item:hover>span {
     background-color: #B8A5B3;
     color: #000000;
 }
 
-.menu-item.active > span {
+.menu-item.active>span {
     background-color: #ffffff;
     color: #000000;
 }
@@ -124,14 +271,6 @@ body {
     color: #000000;
 }
 
-.home-section {
-    margin-left: 220px;
-    width: calc(100% - 220px);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
 iframe {
     width: 100%;
     height: 100%;
@@ -139,14 +278,15 @@ iframe {
     display: block;
 }
 
-.footer{
+.footer {
     text-align: center;
     padding: 10px 0;
-    color: #fff; 
+    color: #fff;
     font-size: 0.9em;
     margin-top: auto;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
     width: 12px;

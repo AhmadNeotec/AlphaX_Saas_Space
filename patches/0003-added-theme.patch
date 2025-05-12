@@ -1,0 +1,496 @@
+From d91a3984039fcaa6438fdc5973b8869cb5030eca Mon Sep 17 00:00:00 2001
+From: Ahmadpasha1221 <ahmadpashashaiks@gmail.com>
+Date: Mon, 12 May 2025 07:42:58 +0000
+Subject: [PATCH 3/3] added theme
+
+---
+ alphax_saas_space/hooks.py                  |  20 ++
+ alphax_saas_space/install.py                |   9 +
+ alphax_saas_space/overrides/switch_theme.py |  22 ++
+ alphax_saas_space/overrides/user_login.py   |  10 +
+ alphax_saas_space/public/css/dashboard.css  |   4 +-
+ alphax_saas_space/public/css/theme.css      | 240 ++++++++++++++++++++
+ alphax_saas_space/public/js/theme.js        |  52 +++++
+ alphax_saas_space/www/dashboard.py          |  11 -
+ alphax_saas_space/www/toggle_modules.py     |   9 -
+ 9 files changed, 355 insertions(+), 22 deletions(-)
+ create mode 100644 alphax_saas_space/install.py
+ create mode 100644 alphax_saas_space/overrides/switch_theme.py
+ create mode 100644 alphax_saas_space/overrides/user_login.py
+ create mode 100644 alphax_saas_space/public/css/theme.css
+ create mode 100644 alphax_saas_space/public/js/theme.js
+ delete mode 100644 alphax_saas_space/www/dashboard.py
+ delete mode 100644 alphax_saas_space/www/toggle_modules.py
+
+diff --git a/alphax_saas_space/hooks.py b/alphax_saas_space/hooks.py
+index 3707ec2..11383d2 100644
+--- a/alphax_saas_space/hooks.py
++++ b/alphax_saas_space/hooks.py
+@@ -37,6 +37,10 @@ app_license = "mit"
+ # include js, css files in header of desk.html
+ # app_include_css = "/assets/alphax_saas_space/css/alphax_saas_space.css"
+ app_include_js = "/assets/alphax_saas_space/js/dashboard.js"
++app_include_js = "/assets/alphax_saas_space/js/theme.js"
++
++
++app_include_css = "/assets/alphax_saas_space/css/theme.css"
+ app_include_css = "/assets/alphax_saas_space/css/custom.css"
+ 
+ client_script = [
+@@ -47,6 +51,9 @@ client_script = [
+ desk_include_js = [
+     "public/js/custom.js"
+ ]
++
++website_css = "css/theme.css"  # If you have custom CSS
++website_js = "js/theme.js"
+ # include js, css files in header of web template
+ # web_include_css = "/assets/alphax_saas_space/css/alphax_saas_space.css"
+ # web_include_js = "/assets/alphax_saas_space/js/alphax_saas_space.js"
+@@ -186,6 +193,8 @@ doc_events = {
+         "validate": "alphax_saas_space.alphax_saas_space.ustom_currency.update_currency_symbol"
+     }
+ }
++
++
+ # website_route_rules = [
+ #     {"from_route": "/dashboard", "to_route": "alphax_saas_space.dashboard"},
+ #     # {"from_route": "/dashboard/", "to_route": "alphax_saas_space.dashboard"}
+@@ -225,6 +234,17 @@ doc_events = {
+ # Overriding Methods
+ # ------------------------------
+ #
++on_login = [
++    "alphax_saas_space.overrides.switch_theme.set_default_theme_on_login"
++]
++
++override_whitelisted_methods = {
++    "frappe.core.doctype.user.user.switch_theme": "alphax_saas_space.overrides.switch_theme.switch_theme"
++}
++
++after_install = [
++    "alphax_saas_space.install.set_default_theme"
++]
+ # override_whitelisted_methods = {
+ # 	"frappe.desk.doctype.event.event.get_events": "alphax_saas_space.event.get_events"
+ # }
+diff --git a/alphax_saas_space/install.py b/alphax_saas_space/install.py
+new file mode 100644
+index 0000000..3dd9d3a
+--- /dev/null
++++ b/alphax_saas_space/install.py
+@@ -0,0 +1,9 @@
++# apps/neotec_theme/neotec_theme/install.py
++import frappe
++
++def set_default_theme():
++    users = frappe.get_all("User", filters={"desk_theme": ["in", [None, "", "light"]]}, fields=["name"])
++    for user in users:
++        frappe.db.set_value("User", user.name, "desk_theme", "alphax_theme")
++    frappe.db.commit()
++    frappe.log("Set default theme to alphax_theme for all users")
+\ No newline at end of file
+diff --git a/alphax_saas_space/overrides/switch_theme.py b/alphax_saas_space/overrides/switch_theme.py
+new file mode 100644
+index 0000000..1c61d88
+--- /dev/null
++++ b/alphax_saas_space/overrides/switch_theme.py
+@@ -0,0 +1,22 @@
++import frappe
++
++@frappe.whitelist()
++def switch_theme(theme):
++    valid_themes = ["dark", "light", "automatic", "alphax_theme"]
++    if theme.lower() in valid_themes:
++        frappe.db.set_value("User", frappe.session.user, "desk_theme", theme.lower())
++        frappe.db.commit()
++        frappe.log(f"Theme switched to {theme.lower()} for user {frappe.session.user}")
++    else:
++        frappe.throw(f"Invalid theme: {theme}")
++
++def set_default_theme_on_login():
++    """Set default theme for user on login if not already set"""
++    user = frappe.session.user
++    if user and user != "Guest":
++        current_theme = frappe.db.get_value("User", user, "desk_theme")
++        if not current_theme:
++            frappe.db.set_value("User", user, "desk_theme", "alphax_theme")
++            frappe.db.commit()
++            frappe.log(f"Default theme set to alphax_theme for user {user}")
++
+diff --git a/alphax_saas_space/overrides/user_login.py b/alphax_saas_space/overrides/user_login.py
+new file mode 100644
+index 0000000..8bf143b
+--- /dev/null
++++ b/alphax_saas_space/overrides/user_login.py
+@@ -0,0 +1,10 @@
++# apps/neotec_theme/neotec_theme/overrides/user_login.py
++import frappe
++
++def set_alphax_theme_on_login():
++    """Set alphax_theme for the user upon login"""
++    user = frappe.session.user
++    if user and user != "Guest":
++        frappe.db.set_value("User", user, "desk_theme", "alphax_theme")
++        frappe.db.commit()
++        frappe.log(f"Set alphax_theme for user {user} on login")
+\ No newline at end of file
+diff --git a/alphax_saas_space/public/css/dashboard.css b/alphax_saas_space/public/css/dashboard.css
+index da77356..301344f 100644
+--- a/alphax_saas_space/public/css/dashboard.css
++++ b/alphax_saas_space/public/css/dashboard.css
+@@ -142,9 +142,9 @@ iframe {
+ .footer{
+     text-align: center;
+     padding: 10px 0;
+-    color: #fff; /* Adjust text color to match the sidebar's theme */
++    color: #fff; 
+     font-size: 0.9em;
+-    margin-top: auto; /* Push the footer to the bottom of the sidebar */
++    margin-top: auto;
+     border-top: 1px solid rgba(255, 255, 255, 0.1);
+ }
+ /* Scrollbar Styling */
+diff --git a/alphax_saas_space/public/css/theme.css b/alphax_saas_space/public/css/theme.css
+new file mode 100644
+index 0000000..de8a1c9
+--- /dev/null
++++ b/alphax_saas_space/public/css/theme.css
+@@ -0,0 +1,240 @@
++
++:root{
++    --main-color: #e7cfe1;
++    --second-color: #B8A5B3;
++    --third-color: #B8A5B3;
++    --widget-bg: #e0d3de;
++}
++[data-theme=alphax_theme]{
++    --primary: var(--main-color);
++    --dt-primary-color: var(--main-color);
++    --blue-avatar-bg: var(--main-color);
++    --blue-avatar-color: var(--main-color);
++    --blue: var(--main-color)
++}
++
++[data-theme=alphax_theme] .page-container,
++[data-theme=alphax_theme] .layout-main-section {
++    background-color: var(--widget-bg);
++}
++[data-theme=alphax_theme] ul li a:hover {
++    background-color: var(--second-color);
++    color: #fff;
++}
++/* Main */
++[data-theme=alphax_theme] body {
++	font-size: 14px;
++	background-color: #e0d3de;
++}
++[data-theme=alphax_theme]a {
++    color: #666;
++	font-weight: 500;
++}
++[data-theme=alphax_theme] .small, small {
++    font-size: 95%;
++}
++[data-theme=alphax_theme] .h6.uppercase, h6.uppercase {
++    font-weight: 600;
++	font-size: 11.5px;
++}
++
++/* Navigation Bar */
++[data-theme=alphax_theme] .standard-sidebar-item.selected{
++    background: var(--main-color);
++}
++[data-theme=alphax_theme] .standard-sidebar-item.selected a{
++    color: #fff;
++}
++[data-theme=alphax_theme] .standard-sidebar-item.selected a svg{
++    fill: #fff;
++}
++[data-theme=alphax_theme] .standard-sidebar-item:hover{
++    background-color: var(--second-color);
++}
++[data-theme=alphax_theme] .standard-sidebar-item:hover a,
++[data-theme=alphax_theme] .standard-sidebar-item:hover svg{
++    color: #fff;
++    fill: #fff;
++}
++
++[data-theme=alphax_theme] .navbar .navbar-nav .nav-link {
++     color: white;
++}
++
++[data-theme=alphax_theme] .navbar {
++    background: var(--main-color) !important;
++    border: none !important;
++}
++[data-theme=alphax_theme] .navbar-nav>li>a{
++	color:#fff !important;
++}
++[data-theme=alphax_theme] .navbar-nav>li>a:hover{
++	color:#ddd !important;
++}
++[data-theme=alphax_theme] .navbar-brand:hover {
++	color:#ddd !important;
++}
++
++/* Widgets */
++[data-theme=alphax_theme] .widget {
++    background-color: var(--widget-bg);
++	border: 1px solid #714b67;
++	box-shadow: 0px 3px 12px 0px var(--widget-bg), 0 3px 3px -2px #461a7714;
++}
++[data-theme=alphax_theme] .widget.shortcut-widget-box .widget-head .widget-title i {
++    color: var(--main-color);
++}
++[data-theme=alphax_theme] .widget.shortcut-widget-box .widget-head .widget-title:hover span{
++    color: var(--main-color);
++}
++[data-theme=alphax_theme] .widget-body .link-item:hover{
++    color: #fff;
++    background: var(--third-color);
++}
++/* Sidebar */
++[data-theme=alphax_theme] .desk-sidebar .desk-sidebar-item {
++    font-size: 13px;
++    font-weight: 600;
++	color: var(--widget-bg);
++}
++[data-theme=alphax_theme] .layout-side-section {
++    font-size: 14px;
++}
++[data-theme=alphax_theme] .uppercase {
++    color:var(--third-color);
++}
++
++/* Dropdowns */
++[data-theme=alphax_theme] .dropdown-menu>li>a {
++    font-size: 13px;
++	color:#666;
++	font-weight: 500;
++}
++[data-theme=alphax_theme] .awesomplete > ul > li[aria-selected=true]{
++    background-color: transparent;
++}
++[data-theme=alphax_theme] .awesomplete > ul > li:hover{
++    background: var(--main-color);
++}
++[data-theme=alphax_theme] .awesomplete > ul > li:hover a{
++    color: #fff;
++}
++/* Page Heading */
++[data-theme=alphax_theme] .page-head {
++    border-bottom: none !important;
++    box-shadow: 0 1px 10px 1px rgba(115, 108, 203, 0.1);
++}
++[data-theme=alphax_theme] .page-title .title-text {
++	color: var(--main-color);
++	font-size: 22px;
++}
++[data-theme=alphax_theme] .widget.shortcut-widget-box .widget-head .widget-label .widget-title{
++    color: var(--main-color);
++}
++[data-theme=alphax_theme] .widget .widget-head .widget-title,
++[data-theme=alphax_theme] .section-head,
++[data-theme=alphax_theme] .comment-input-header {
++    font-size: 14px;
++	color: var(--main-color);
++}
++
++/*Main Section */
++[data-theme=alphax_theme] .list-row-head {
++    background-color: #f3f6f9;
++    border-bottom: 1px solid #e4e4e4 !important;
++}
++
++/* Buttons */
++[data-theme=alphax_theme] .btn-primary {
++    background-color: var(--main-color);
++    border-color: var(--main-color);
++}
++[data-theme=alphax_theme] .control-label, .grid-heading-row {
++    font-size:13px;
++}
++[data-theme=alphax_theme] .btn-default:hover,
++[data-theme=alphax_theme] .btn-default:focus, .btn-default.focus,
++[data-theme=alphax_theme] .btn-default:active, .btn-default.active,
++[data-theme=alphax_theme] .open > .dropdown-toggle.btn-default {
++    background-color: var(--third-color) !important;
++    color: #fff !important;
++}
++[data-theme=alphax_theme] .btn-default:hover svg{
++    stroke: #fff !important;
++    fill: #fff !important;
++    color: #fff !important;
++}
++[data-theme=alphax_theme] .btn-primary:hover,
++[data-theme=alphax_theme] .btn-primary:focus, .btn-primary.focus,
++[data-theme=alphax_theme] .btn-primary:active, .btn-primary.active,
++[data-theme=alphax_theme] .open > .dropdown-toggle.btn-primary {
++    background-color: var(--main-color) !important;
++    border-color: var(--main-color) !important;
++}
++[data-theme=alphax_theme] .btn-secondary,
++[data-theme=alphax_theme] .btn-secondary:focus, .btn-secondary.focus,
++[data-theme=alphax_theme] .btn-secondary:active, .btn-secondary.active,
++[data-theme=alphax_theme] .open > .dropdown-toggle.btn-secondary {
++    background-color: var(--third-color);
++    color: #fff;
++}
++
++[data-theme=alphax_theme] .btn-secondary:hover{
++    background-color: var(--main-color);
++    color: #fff;
++}
++[data-theme=alphax_theme] .indicator-right.blue:after, .indicator.blue:before {
++    background: var(--third-color);
++}
++
++/*Other Components*/
++[data-theme=alphax_theme] input[type=checkbox]:checked:before {
++    color: var(--third-color);
++}
++[data-theme=alphax_theme] input[type=checkbox]:checked{
++    background: var(--main-color);
++}
++[data-theme=alphax_theme] .frappe-control .ql-editor:not(.read-mode){
++    background: var(--widget-bg);
++}
++[data-theme=alphax_theme] .input-with-feedback,
++[data-theme=alphax_theme] .like-disabled-input{
++    background-color: #e8eafcad;
++}
++[data-theme=alphax_theme] .document-link-badge span{
++    background-color: var(--main-color) !important;
++    color: #fff;
++}
++
++[data-theme=alphax_theme] .document-link-badge{
++    background-color: var(--widget-bg)!important;
++}
++[data-theme=alphax_theme] .document-link button{
++    background: var(--third-color) !important;
++    color: #fff !important;
++}
++
++[data-theme=alphax_theme] .document-link button svg{
++    fill: white;
++    stroke: white;
++}
++[data-theme=alphax_theme] .indicator-pill.gray,
++[data-theme=alphax_theme] .indicator-pill-right.gray,
++[data-theme=alphax_theme] .indicator-pill-round.gray {
++    background: var(--third-color);
++    color: #fff;
++}
++[data-theme=alphax_theme] .indicator-pill.green,
++[data-theme=alphax_theme] .indicator-pill-right.green,
++[data-theme=alphax_theme] .indicator-pill-round.green {
++    color: var(--main-color);
++}
++
++[data-theme=alphax_theme] .notifications-icon svg{
++    stroke: #fff;
++    fill: #fff;
++}
++
++[data-theme=alphax_theme] #page-Workspaces .page-head{
++    background: var(--widget-bg);
++}
+\ No newline at end of file
+diff --git a/alphax_saas_space/public/js/theme.js b/alphax_saas_space/public/js/theme.js
+new file mode 100644
+index 0000000..de699d1
+--- /dev/null
++++ b/alphax_saas_space/public/js/theme.js
+@@ -0,0 +1,52 @@
++// apps/alphax_saas_space/alphax_saas_space/public/js/theme.js
++frappe.ui.ThemeSwitcher = class CustomThemeSwitcher extends frappe.ui.ThemeSwitcher {
++    constructor() {
++        super();
++        this.apply_saved_theme();
++    }
++
++    fetch_themes() {
++        return new Promise((resolve) => {
++            this.themes = [
++                { name: "light", label: "Frappe Light", info: "Light Theme" },
++                { name: "dark", label: "Timeless Night", info: "Dark Theme" },
++                { name: "alphax_theme", label: "Alphax Theme", info: "Custom AlphaX theme" },
++                { name: "automatic", label: "Automatic", info: "Uses system's theme" },
++            ];
++            resolve(this.themes);
++        });
++    }
++
++    apply_saved_theme() {
++        frappe.call({
++            method: "frappe.client.get_value",
++            args: {
++                doctype: "User",
++                filters: { name: frappe.session.user },
++                fieldname: "desk_theme"
++            },
++            callback: (response) => {
++                const saved_theme = response.message?.desk_theme || "alphax_theme";
++                console.log("Applying saved theme:", saved_theme);
++                this.switch(saved_theme);
++            },
++            error: (err) => {
++                console.error("Error fetching theme:", err);
++            }
++        });
++    }
++
++    switch(theme) {
++        console.log("Switching to:", theme);
++        frappe.call({
++            method: "frappe.core.doctype.user.user.switch_theme",
++            args: { theme: theme },
++            callback: () => console.log("Theme switch successful:", theme),
++            error: (err) => console.error("Theme switch error:", err)
++        });
++        super.switch(theme);
++        if (theme === "alphax_theme") {
++            document.documentElement.setAttribute("data-theme", "alphax_theme");
++        }
++    }
++}
+\ No newline at end of file
+diff --git a/alphax_saas_space/www/dashboard.py b/alphax_saas_space/www/dashboard.py
+deleted file mode 100644
+index e439833..0000000
+--- a/alphax_saas_space/www/dashboard.py
++++ /dev/null
+@@ -1,11 +0,0 @@
+-# from frappe.website.website_generator import WebsiteGenerator
+-
+-# class Dashboard(WebsiteGenerator):
+-#     def get_context(self, context):
+-#         context.no_cache = 1
+-#         context.no_header = 1  # Disable Frappe header
+-#         context.no_footer = 1  # Disable Frappe footer
+-#         context.title = "AlphaX Dashboard"
+-#         context.template = "templates/dashboard.html"
+-#         # Add any dynamic data if needed
+-#         return context
+\ No newline at end of file
+diff --git a/alphax_saas_space/www/toggle_modules.py b/alphax_saas_space/www/toggle_modules.py
+deleted file mode 100644
+index 4d6e3f4..0000000
+--- a/alphax_saas_space/www/toggle_modules.py
++++ /dev/null
+@@ -1,9 +0,0 @@
+-# # alphax_saas_space/www/toggle_modules.py
+-# import frappe
+-# from alphax_saas_space.utils import update_module_visibility
+-
+-# def get_context(context):
+-#     context.user = frappe.session.user
+-#     context.hide_default = frappe.db.get_value("User", context.user, "hide_default_modules") or 1
+-#     context.csrf_token = frappe.sessions.get_csrf_token()
+-#     frappe.db.commit()
+\ No newline at end of file
+-- 
+2.45.2
+

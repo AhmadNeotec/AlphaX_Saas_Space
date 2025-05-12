@@ -1,0 +1,116 @@
+From d32578078383aef6545921346aac0c35f89e6c15 Mon Sep 17 00:00:00 2001
+From: Ahmadpasha1221 <ahmadpashashaiks@gmail.com>
+Date: Tue, 29 Apr 2025 09:09:41 +0000
+Subject: [PATCH 2/3] changes in pos and added footer
+
+---
+ .../alphax_saas_space/custom_currency.py        | 17 +++++++++++++++++
+ alphax_saas_space/public/css/dashboard.css      |  8 ++++++++
+ alphax_saas_space/public/js/custom_currency.js  | 13 +++++++++++++
+ alphax_saas_space/public/js/dashboard.js        |  2 +-
+ alphax_saas_space/www/dashboard.html            |  5 ++++-
+ 5 files changed, 43 insertions(+), 2 deletions(-)
+ create mode 100644 alphax_saas_space/alphax_saas_space/custom_currency.py
+ create mode 100644 alphax_saas_space/public/js/custom_currency.js
+
+diff --git a/alphax_saas_space/alphax_saas_space/custom_currency.py b/alphax_saas_space/alphax_saas_space/custom_currency.py
+new file mode 100644
+index 0000000..d483d1f
+--- /dev/null
++++ b/alphax_saas_space/alphax_saas_space/custom_currency.py
+@@ -0,0 +1,17 @@
++import frappe
++
++@frappe.whitelist()
++def get_custom_currency_symbol(currency):
++    if currency == "SAR":
++        return "\uFDFC"  # Unicode for the new Saudi Riyal symbol
++    return frappe.db.get_value("Currency", currency, "symbol")
++
++@frappe.whitelist()
++def update_currency_symbol():
++    currency = frappe.get_doc("Currency", "SAR")
++    if currency.symbol != "\uFDFC":
++        currency.symbol = "\uFDFC"
++        currency.save()
++        frappe.db.commit()
++
++        
+\ No newline at end of file
+diff --git a/alphax_saas_space/public/css/dashboard.css b/alphax_saas_space/public/css/dashboard.css
+index 322e0e9..da77356 100644
+--- a/alphax_saas_space/public/css/dashboard.css
++++ b/alphax_saas_space/public/css/dashboard.css
+@@ -139,6 +139,14 @@ iframe {
+     display: block;
+ }
+ 
++.footer{
++    text-align: center;
++    padding: 10px 0;
++    color: #fff; /* Adjust text color to match the sidebar's theme */
++    font-size: 0.9em;
++    margin-top: auto; /* Push the footer to the bottom of the sidebar */
++    border-top: 1px solid rgba(255, 255, 255, 0.1);
++}
+ /* Scrollbar Styling */
+ ::-webkit-scrollbar {
+     width: 12px;
+diff --git a/alphax_saas_space/public/js/custom_currency.js b/alphax_saas_space/public/js/custom_currency.js
+new file mode 100644
+index 0000000..035bb6c
+--- /dev/null
++++ b/alphax_saas_space/public/js/custom_currency.js
+@@ -0,0 +1,13 @@
++frappe.ui.form.on("Currency", {
++    refresh: function(frm) {
++        if (frm.doc.currency_name === "SAR") {
++            frm.set_value("symbol", "\uFDFC");
++            frm.fields_dict.symbol.$input.css("font-family", "Claudion, sans-serif");
++        }
++    }
++});
++
++
++
++
++
+diff --git a/alphax_saas_space/public/js/dashboard.js b/alphax_saas_space/public/js/dashboard.js
+index e00a6b8..170813e 100644
+--- a/alphax_saas_space/public/js/dashboard.js
++++ b/alphax_saas_space/public/js/dashboard.js
+@@ -142,7 +142,7 @@ function loadContent(url) {
+         '/product-bundle/new-product-bundle': '/app/product-bundle/new-product-bundle',
+         '/expense-claim': '/app/expense-claim',
+         '/expense-claim/new-expense-claim': '/app/expense-claim/new-expense-claim',
+-        '/pos-profile/new-pos-profile': '/app/pos-profile/new-pos-profile',
++        '/pos-profile': '/app/pos-profile',
+         '/point-of-sale': '/app/point-of-sale',
+         '/journal-entry': '/app/journal-entry',
+         '/journal-entry/new-journal-entry': '/app/journal-entry/new-journal-entry',
+diff --git a/alphax_saas_space/www/dashboard.html b/alphax_saas_space/www/dashboard.html
+index bc85bcd..aee744f 100644
+--- a/alphax_saas_space/www/dashboard.html
++++ b/alphax_saas_space/www/dashboard.html
+@@ -160,7 +160,7 @@
+                     <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+                 </span>
+                 <ul class="sub-menu">
+-                    <li data-route="/pos-profile/new-pos-profile">New POS</li>
++                    <li data-route="/pos-profile">POS Profile</li>
+                     <li data-route="/point-of-sale">POS</li>
+                 </ul>
+             </li>
+@@ -219,6 +219,9 @@
+                 </span>
+             </li>
+         </ul>
++        <footer class="footer">
++            <h6>Powered by IRSAA</h6>
++        </footer>
+     </div>
+ 
+     <!-- Main Section -->
+-- 
+2.45.2
+

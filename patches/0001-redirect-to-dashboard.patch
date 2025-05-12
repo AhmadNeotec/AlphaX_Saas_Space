@@ -1,0 +1,60 @@
+From 496283d38c660b305a6dc177db533985171b5d11 Mon Sep 17 00:00:00 2001
+From: Ahmadpasha1221 <ahmadpashashaiks@gmail.com>
+Date: Mon, 28 Apr 2025 15:00:55 +0000
+Subject: [PATCH 1/3] redirect to dashboard
+
+---
+ alphax_saas_space/hooks.py       | 18 ++++++++++++++++++
+ alphax_saas_space/utils/login.py |  9 +++++++++
+ 2 files changed, 27 insertions(+)
+ create mode 100644 alphax_saas_space/utils/login.py
+
+diff --git a/alphax_saas_space/hooks.py b/alphax_saas_space/hooks.py
+index 9107d7c..3707ec2 100644
+--- a/alphax_saas_space/hooks.py
++++ b/alphax_saas_space/hooks.py
+@@ -88,7 +88,25 @@ desk_include_js = [
+ 
+ # automatically create page for each record of this doctype
+ # website_generators = ["Web Page"]
++# hooks.py
++def redirect_after_login(context):
++    return "/dashboard"
+ 
++app_include_js = [
++    "/assets/js/dashboard.min.js"  # If you have any JS for dashboard
++]
++
++bootinfo = {
++    "redirect_after_login": redirect_after_login
++}
++
++
++# hooks.py
++import frappe
++
++from alphax_saas_space.utils.login import CustomLoginManager
++
++frappe.auth.LoginManager = CustomLoginManager
+ # Jinja
+ # ----------
+ 
+diff --git a/alphax_saas_space/utils/login.py b/alphax_saas_space/utils/login.py
+new file mode 100644
+index 0000000..1f77adf
+--- /dev/null
++++ b/alphax_saas_space/utils/login.py
+@@ -0,0 +1,9 @@
++# your_app/utils/login.py
++import frappe
++from frappe.auth import LoginManager
++
++class CustomLoginManager(LoginManager):
++    def login(self):
++        super(CustomLoginManager, self).login()
++        # Redirect to dashboard after successful login
++        frappe.local.response["home_page"] = "/dashboard"
+\ No newline at end of file
+-- 
+2.45.2
+
