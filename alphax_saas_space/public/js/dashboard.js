@@ -251,7 +251,8 @@ function loadContent(url) {
         '/item/new-item': '/app/item/new-item',
         '/dashboard': '/app/dashboard-view/Accounts',
         '/quotation': '/app/quotation',
-        '/supplier-quotation': '/app/supplier-quotation'
+        '/supplier-quotation': '/app/supplier-quotation',
+        '/alphax-support':'/app/alphax-support'
     };
 
     if (iframeRoutes[url]) {
