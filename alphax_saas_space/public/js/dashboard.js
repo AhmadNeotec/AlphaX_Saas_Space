@@ -252,7 +252,7 @@ function loadContent(url) {
         '/dashboard': '/app/dashboard-view/Accounts',
         '/quotation': '/app/quotation',
         '/supplier-quotation': '/app/supplier-quotation',
-        '/alphax-support':'/app/alphax-support'
+        '/alphax-support':'/app/hd-ticket'
     };
 
     if (iframeRoutes[url]) {
