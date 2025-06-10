@@ -1,0 +1,618 @@
+:root {
+	--bg-color: #e0d3de; /* Updated to neotec_theme's --widget-bg */
+	--btn-primary: #714b67; /* Same as neotec_theme's --main-color */
+	--btn-secondary: #B8A5B3; /* Updated to neotec_theme's --third-color */
+	--secondary: #B8A5B3; /* Updated to neotec_theme's --second-color */
+	--navbar-bg: #714b67; /* Same as neotec_theme's --main-color */
+	--text-btn-color: white;
+	--table-border-color: #714b6740;
+	--btn-default-hover-bg: white;
+	--sidebar-select-color: #B8A5B320; /* Adjusted with neotec_theme's --second-color */
+	--checkbox-gradient: linear-gradient(180deg, var(--btn-primary) -124.51%, var(--btn-primary) 100%);
+	--text-base: 14px;
+}
+
+/* login page */
+
+[data-path="login"] .navbar-light {
+	border-bottom: 1px solid var(--blue-400) !important;
+	background: white;
+}
+
+[data-path="login"] .web-footer {
+	border-top: 1px solid var(--blue-400) !important;
+}
+
+.for-login .page-card {
+	border: 1px solid var(--blue-400) !important;
+}
+
+.for-login .btn-login {
+	background-color: var(--blue-800) !important;
+	border: none !important;
+	color: white;
+}
+
+.for-login .btn-login:hover {
+	background-color: var(--blue-600) !important;
+	border: none !important;
+	color: white;
+}
+
+.for-login .page-card-head h4 {
+	color: black !important;
+}
+
+.for-login .form-control, .for-login .form-control {
+	background-color: white !important;
+	border: solid 1px var(--blue-400) !important;
+}
+
+.for-login .form-control:focus, .for-login .form-control:hover {
+	box-shadow: 0 0 0 1px var(--blue-300) !important;
+}
+
+.for-login .page-card .page-card-body .forgot-password-message>* {
+	color: var(--blue-600) !important;
+}
+
+/* NAVBAR DESIGN */
+
+.navbar .navbar-expand span, 
+.navbar .navbar-expand li a,
+#navbar-breadcrumbs a,
+.navbar .nav-item button.nav-link { 
+	color: var(--btn-default-hover-bg) !important;
+}
+
+#navbar-breadcrumbs li.disabled a {
+	color: var(--white-overlay-400) !important;
+}
+
+.nav-tabs { 
+	border: none;
+}
+
+.search-bar span {
+	color: var(--neutral-black) !important;
+}
+
+.search-bar span:hover {
+	color: var(--bg-color);
+}
+
+/* .awesomplete [role="listbox"] {
+	background-color: var(--bg-color);
+} */
+/* PAGE DESIGN */
+
+body, .page-container { 
+	background-color: var(--bg-color) !important;
+}
+
+.page-head { 
+	background-color: white !important;
+	border-bottom: none !important;
+	box-shadow: 0 1px 10px 1px rgba(115, 108, 203, 0.1);
+}
+
+.es-icon {
+	@extend .icon;
+	fill: var(--btn-secondary) !important; 
+	stroke: var(--btn-secondary) !important;
+}
+
+.page-content .layout-main-section {
+	background-color: var(--bg-color); /* Static --widget-bg from neotec_theme */
+	color: black; /* Set text color to black */
+}
+
+.datatable .dt-cell {
+	background-color: #fff !important;
+}
+
+.page-title .title-text {
+	color: var(--btn-primary);
+	font-size: 22px;
+}
+
+.section-head,
+.comment-input-header {
+	font-size: 14px;
+	color: var(--btn-primary);
+}
+
+/* DASHBOARD DESIGN */
+
+.desk-sidebar-item {
+	line-height: 2.2;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--bg-color);
+}
+
+.widget.links-widget-box, .widget.dashboard-widget-box {
+	border: 1px solid var(--btn-primary);
+	box-shadow: 0px 3px 12px 0px var(--bg-color), 0 3px 3px -2px #461a7714;
+	background-color: var(--bg-color); /* Static --widget-bg from neotec_theme */
+	color: black; /* Set text color to black */
+}
+
+.widget.links-widget-box .widget-head .widget-label .widget-title {
+	background-color: var(--bg-color); /* Static --widget-bg */
+	color: black !important; /* Updated to black text */
+}
+
+.widget.spacer {
+	background-color: var(--bg-color);
+}
+
+.widget.shortcut-widget-box{
+	color: var(--btn-primary);
+	background-color: var(--btn-color);
+}
+
+.widget.shortcut-widget-box .widget-head .widget-title i {
+	color: black;
+	background-color: var(--bg-color);
+}
+
+.widget.number-widget-box {
+	background-color: var(--bg-color);
+}
+
+.widget.shortcut-widget-box .widget-head .widget-title:hover span {
+	color: var(--btn-primary);
+}
+
+.widget shortcut-widget-box {
+	background-color: var(--bg-color);
+}
+
+.widget-body .link-item {
+	margin-bottom: 5px !important;
+	color: black; /* Set text color to black */
+}
+
+.widget-body .link-item:hover {
+	color: white; /* White text on hover */
+	background: var(--secondary); /* Background to --secondary on hover */
+}
+
+/* .widget.links-widget-box .link-item:first-child {
+	background-color: var(--btn-primary);
+	color: var(--btn-secondary);
+} */
+
+widget.links-widget-box .link-item{
+	background-color: var(--btn-primary);
+}
+
+.icon-md {
+	width: 30px;
+	height: 30px;
+}
+
+.onboard-spotlight {
+	color: var(--btn-primary) !important;
+	/* text-size-adjust: 15px; */
+}
+
+a.onboard-spotlight .link-content:hover {
+	color: var(--btn-color) !important;
+	/* background-color: var(--btn-primary) */
+}
+
+.dropdown-notifications .es-icon {
+	@extend .icon;
+	fill: white !important; 
+	stroke: white !important;
+}
+
+.link-text{
+	font-weight: 500;
+}
+/* LIST GRID DESIGN */
+
+.list-filters .form-control, 
+.standard-filter-section .form-control {
+	box-shadow: 0 0 0 1px rgba(124, 124, 124, 0.25) !important;
+}
+
+.level.list-row-head, 
+.level.list-row-head .level-item {
+	font-weight: bold;
+	background-color: #f3f6f9;
+	border-bottom: 1px solid #e4e4e4 !important;
+}
+
+.list-row-container .list-row:hover {
+	background-color: var(--sidebar-select-color);
+}
+
+.list-filters .form-control:focus, 
+.list-filters .form-control:hover,
+.standard-filter-section .form-control:focus, 
+.standard-filter-section .form-control:hover {
+	box-shadow: 0 0 0 2px rgba(124, 124, 124, 0.25) !important;
+}
+
+/* FORM DESIGN */
+
+.form-control, 
+.frappe-control .ql-editor:not(.read-mode) {
+	box-shadow: 0 0 0 1px rgba(124, 124, 124, 0.25) !important;
+	background: var(--bg-color);
+}
+
+.ace_editor {
+	box-shadow: 0 0 0 1px rgba(124, 124, 124, 0.25) !important;
+}
+
+.ql-editor:focus, 
+.ace_editor:focus {
+	box-shadow: 0 0 0 2px rgba(124, 124, 124, 0.25) !important;
+}
+
+.form-control:focus, 
+.form-control:hover {
+	box-shadow: 0 0 0 2px #714b6780 !important;
+}
+
+.form-control:focus {
+	background-color: #714b6725;
+}
+
+.frappe-control:not([data-fieldtype="MultiSelectPills"]):not([data-fieldtype="Table MultiSelect"]).has-error input:hover,
+.frappe-control:not([data-fieldtype="MultiSelectPills"]):not([data-fieldtype="Table MultiSelect"]).has-error input:focus {
+	box-shadow: 0 0 0 2px #eb909180 !important;
+}
+
+.frappe-control:not([data-fieldtype="MultiSelectPills"]):not([data-fieldtype="Table MultiSelect"]).has-error input {
+	box-shadow: none !important;
+}
+
+option {
+	background-color: white !important;
+}
+
+.grid-heading-row .filter-row, 
+.awesomplete [role="listbox"] {
+	background-color: var(--bg-color) !important;
+}
+
+.grid-row-open {
+	box-shadow: 0 0 0 3px var(--btn-primary) !important;
+}
+
+.awesomplete [role="option"]:hover, 
+.awesomplete li:hover {
+	background-color: var(--btn-primary) !important;
+}
+
+.awesomplete > ul > li[aria-selected=true] {
+	background-color: transparent;
+}
+
+.awesomplete > ul > li:hover a {
+	color: white;
+}
+
+input[type="checkbox"]:checked {
+	background-color: var(--btn-primary);
+	background-image: url("data:image/svg+xml, <svg viewBox='0 0 8 7' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 4.00001L2.66667 5.80001L7 1.20001' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>"), var(--checkbox-gradient) !important;
+}
+
+input[type="checkbox"]:checked:before {
+	color: var(--btn-secondary);
+}
+
+.datepicker {
+	background-color: var(--bg-color) !important;
+}
+
+/* BUTTONS DESIGN */
+
+.btn {
+	border-radius: 0.25rem !important;
+}
+
+.btn.btn-primary {
+	color: var(--text-btn-color);
+	border: solid 2px var(--btn-primary) !important;
+	background-color: var(--btn-primary);
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:focus, 
+.btn.btn-primary.focus,
+.btn.btn-primary:active, 
+.btn.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+	background: var(--btn-primary) !important;
+	border: solid 2px var(--btn-primary) !important;
+	color: white;
+}
+
+.standard-actions .btn.btn-secondary {
+	background: var(--secondary) !important;
+	border: solid 2px var(--secondary) !important;
+	color: var(--text-btn-color);
+}
+
+.standard-actions .btn.btn-secondary:hover,
+.standard-actions .btn.btn-secondary:focus, 
+.btn.btn-secondary.focus,
+.standard-actions .btn.btn-secondary:active, 
+.btn.btn-secondary.active,
+.open > .dropdown-toggle.btn-secondary {
+	background: var(--btn-primary) !important;
+	border: solid 2px var(--secondary) !important;
+	color: var(--btn-primary);
+}
+
+.custom-actions .btn.btn-default {
+	background: var(--secondary) !important;
+	border: solid 2px var(--secondary) !important;
+	color: var(--text-btn-color);
+}
+
+.custom-actions .btn.btn-default:hover {
+	background: var(--btn-default-hover-bg) !important;
+	border: solid 2px var(--secondary) !important;
+	color: var(--btn-primary);
+}
+
+.btn.btn-secondary .es-icon {
+	@extend .icon;
+	fill: white !important; 
+	stroke: white !important;
+}
+
+.btn.btn-default {
+	background: var(--btn-default-hover-bg) !important;
+	border: solid 1px var(--btn-secondary) !important;
+	color: var(--btn-primary);
+}
+
+.btn.btn-default:hover,
+.btn.btn-default:focus, 
+.btn.btn-default.focus,
+.btn.btn-default:active, 
+.btn.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+	background-color: var(--secondary) !important;
+	color: var(--btn-primary) !important;
+}
+
+.btn.btn-default:hover svg {
+	stroke: var(--btn-primary) !important;
+	fill: white !important;
+	color: white !important;
+}
+
+.btn.grid-add-row {
+	background: var(--btn-default-hover-bg) !important;
+	border: solid 1px var(--btn-secondary) !important;
+	color: var(--text-color);
+}
+
+.btn.btn-new-doc {
+	background-color: var(--btn-primary) !important;
+	color: var(--text-btn-color);
+	border: solid 2px var(--btn-primary) !important;
+}
+
+.btn.btn-new-doc:hover {
+	background: var(--btn-default-hover-bg) !important;
+	border: solid 2px var(--btn-primary) !important;
+	color: var(--text-color);
+}
+
+.custom-actions .btn {
+	font-size: 12px !important;
+}
+
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle), 
+div#driver-popover-item .driver-popover-footer .btn-group > button:not(:last-child):not(.dropdown-toggle), 
+.btn-group > .btn-group:not(:last-child) > .btn, 
+div#driver-popover-item .driver-popover-footer .btn-group > .btn-group:not(:last-child) > button {
+	border-top-right-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;  
+}
+
+.btn-group > .btn:not(:first-child), 
+div#driver-popover-item .driver-popover-footer .btn-group > button:not(:first-child), 
+.btn-group > .btn-group:not(:first-child) > .btn, 
+div#driver-popover-item .driver-popover-footer .btn-group > .btn-group:not(:first-child) > button {
+	border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+}
+
+/* POS DESIGN */
+
+.point-of-sale-app section { 
+	min-height: 40rem !important;
+}
+
+.client-wrapper ul {
+	padding-left: 22px;
+	margin-top: 0; 
+	margin-bottom: 0;
+}
+
+.client-wrapper li {
+	float: left;
+	list-style-type: none;
+}
+
+.client-wrapper li a { 
+	display: inline-block;
+	text-decoration: none;
+	width: 100%; 
+	background-color: var(--gray-300) !important; 
+	color: black; 
+	text-align: center;
+}
+
+.client-wrapper li a.plus-pos, 
+.client-wrapper li a.plus-pos:focus, 
+.client-wrapper li a.plus-pos:hover {
+	background-color: var(--gray-400) !important;
+}
+
+.client-wrapper li a.minus-pos, 
+.client-wrapper li a.minus-pos:focus, 
+.client-wrapper li a.minus-pos:hover {
+	background-color: var(--red-400) !important;
+}
+
+.client-wrapper li a:focus,
+.client-wrapper li a:hover {
+	background-color: var(--gray-400) !important;
+	color: black;
+}
+
+.client-wrapper li a.active {
+	background-color: white !important;
+	color: black;
+}
+
+/* SIDEBAR DESIGN */
+
+.standard-sidebar-item.selected{
+	background: var(--btn-primary);
+}
+
+.standard-sidebar-item.selected a {
+	color: var(--bg-color);
+	background-color: var(--btn-primary);
+}
+
+
+
+.standard-sidebar-item.selected a svg {
+	fill: var(--btn-secondary);
+}
+
+.standard-sidebar-item:hover {
+	background-color: var(--btn-primary);
+}
+
+.standard-sidebar-item:hover a,
+.standard-sidebar-item:hover svg {
+	color: var(--bg-color);
+	fill: var(--btn-secondary);
+}
+
+.desk-sidebar .desk-sidebar-item {
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--btn-secondary);
+}
+
+/* .desk-sidebar .standard-sidebar-item > a :hover {
+	background-color: var(--btn-primary);
+} */
+
+.desk-sidebar .standard-sidebar-item :hover {
+	background-color: var(--btn-primary);
+}
+
+/* .standard-sidebar-item .item-anchor :hover{
+	background-color: var(--btn-primary);
+} */
+
+.layout-side-section {
+	font-size: 14px;
+}
+
+.uppercase {
+	color: var(--secondary);
+}
+
+/* DROPDOWN DESIGN */
+
+.dropdown-menu > li > a {
+	font-size: 13px;
+	color: #666;
+	font-weight: 500;
+}
+
+/* OTHER COMPONENTS */
+
+.input-with-feedback,
+.like-disabled-input {
+	background-color: #e8eafcad;
+}
+
+.document-link-badge {
+	background-color: var(--bg-color) !important;
+}
+
+.document-link-badge span {
+	background-color: var(--btn-primary) !important;
+	color: white;
+}
+
+.document-link button {
+	background: var(--secondary) !important;
+	color: var(--btn-primary) !important;
+}
+
+.document-link button svg {
+	fill: white;
+	stroke: white;
+}
+
+.indicator-pill.gray,
+.indicator-pill-right.gray,
+.indicator-pill-round.gray {
+	background: var(--secondary);
+	color: white;
+}
+
+.indicator-pill.green,
+.indicator-pill-right.green,
+.indicator-pill-round.green {
+	color: var(--btn-primary);
+}
+
+.indicator-right.blue:after, 
+.indicator.blue:before {
+	background: var(--secondary);
+}
+
+.notifications-icon svg {
+	stroke: white;
+	fill: white;
+}
+
+#page-Workspaces .page-head {
+	background: var(--bg-color);
+}
+
+/* Additional styles from neotec_theme */
+
+a {
+	color: #666;
+	font-weight: 500;
+}
+
+ul li a:hover {
+	background-color: var(--secondary);
+	color: white;
+}
+
+.small, small {
+	font-size: 95%;
+}
+
+.h6.uppercase, h6.uppercase {
+	font-weight: 600;
+	font-size: 11.5px;
+}
+
+.control-label {
+	font-size: 13px;
+}

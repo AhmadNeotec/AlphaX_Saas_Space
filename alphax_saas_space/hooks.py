@@ -35,21 +35,30 @@ app_license = "mit"
 # # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/alphax_saas_space/css/alphax_saas_space.css"
+app_include_css = [
+    "/assets/alphax_saas_space/css/alphax_saas_space.css",
+    "/assets/alphax_saas_space/css/custom.css"
+]
+
 app_include_js = "/assets/alphax_saas_space/js/dashboard.js"
 
 
 
-app_include_css = "/assets/alphax_saas_space/css/custom.css"
+# app_include_css = "/assets/alphax_saas_space/css/custom.css"
 
 client_script = [
     "/assets/alphax_saas_space/js/custom_currency.js"
 ]
+
+app_include_js = [
+    "/assets/alphax_saas_space/js/helpdesk_custom.js"
+]
+
 # app_include_js = "/assets/alphax_saas_space/js/custom.js"
 
-desk_include_js = [
-    "public/js/custom.js"
-]
+# desk_include_js = [
+#     "public/js/custom.js"
+# ]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/alphax_saas_space/css/alphax_saas_space.css"
@@ -191,6 +200,11 @@ doc_events = {
     }
 }
 
+doc_events = {
+    "HD Ticket": {
+        "after_insert": "alphax_saas_space.support.notification.send_ticket_notification"
+    }
+}
 
 # website_route_rules = [
 #     {"from_route": "/dashboard", "to_route": "alphax_saas_space.dashboard"},
@@ -251,6 +265,19 @@ doc_events = {
 # -----------------------------------------------------------
 
 # ignore_links_on_delete = ["Communication", "ToDo"]
+
+after_migrate = [
+    "alphax_saas_space.migrations.add_hd_ticket_custom_fields.execute"
+]
+# Automatically update python controller files with type annotations for this app.
+# export_python_type_annotations = True
+
+fixtures = [
+    {"doctype": "Custom Field", "filters": [["dt", "in", ["HD Ticket", "HD Ticket Template"]]]},
+    {"dt": "Client Script", "filters": [["name", "in", ["HD Ticket Custom View", "HD Ticket Auto Set and Dependency", "HD Ticket List View Custom"]]]},
+    # {"dt": "HD Ticket Template"},
+    # {"dt": "HD Ticket Template Field"}
+]
 
 # Request Events
 # ----------------
